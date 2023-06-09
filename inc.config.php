@@ -1,6 +1,6 @@
 <?php
 
-$configCompanyName = 'moneyhive.com';
+$configCompanyName = 'moneyhive';
 $configCompanyURL  = 'https://moneyhive.com/';
 
 
