@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb
--- Generation Time: Jun 09, 2023 at 06:01 PM
+-- Generation Time: Jun 09, 2023 at 06:16 PM
 -- Server version: 10.10.3-MariaDB-1:10.10.3+maria~ubu2204
 -- PHP Version: 8.1.15
 
@@ -80,7 +80,8 @@ CREATE TABLE `wishlists` (
   `item_price` double NOT NULL,
   `description` varchar(512) NOT NULL,
   `status` int(11) NOT NULL COMMENT '1- ongoing\r\n2- done\r\n3- cancelled',
-  `progress` double NOT NULL DEFAULT 0
+  `progress` double NOT NULL DEFAULT 0,
+  `date_time_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
