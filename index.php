@@ -9,7 +9,7 @@ include 'layouts/inc.content.begin.php';
 
 Helpers::noLoginRedirect('signin.php');
 
-
+echo TransactionsModel::getBalance(UserSession::get_id());
 ?>
 
 <?php

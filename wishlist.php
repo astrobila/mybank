@@ -1,6 +1,6 @@
 <?php
 
-$pageTitle = 'Dummy Data - Indeks';
+$pageTitle = 'Wishlist';
 
 include 'inc.config.php';
 include 'layouts/inc.header.tag.php';
@@ -14,8 +14,8 @@ $data = WishlistModel::getAll(UserSession::get_id(), $page, 10);
 ?>
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
   <div class="d-flex justify-content-between">
-    <div><h2>Transaction</h2></div>
-    <div><a class="float-end btn btn-primary" href="transactions.add.php">Add Transactions</a></div>
+    <div><h2>Wishlist</h2></div>
+    <div><a class="float-end btn btn-primary" href="wishlist.add.php">Add Transactions</a></div>
   </div>
   <hr />
   <div class="table-responsive">

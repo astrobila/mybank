@@ -74,7 +74,7 @@ class TransactionsModel {
 
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
-        $sumCredit += $row;
+        $sumCredit = $sumCredit + $row['amount'];
       }
     }
 
@@ -90,7 +90,7 @@ class TransactionsModel {
 
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
-        $sumDebit += $row;
+        $sumDebit = $sumDebit + $row['amount'];
       }
     }
 
@@ -106,7 +106,7 @@ class TransactionsModel {
 
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
-        $sumSavings += $row;
+        $sumSavings = $sumSavings + $row['amount'];
       }
     }
 
