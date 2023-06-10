@@ -54,11 +54,89 @@ class WishlistModel {
 
   }
 
-  public static function addProgress() 
+  public static function addProgress($wishlist_id, $progress) 
   {
+    $db = DB::getInstance();
+    $update_progress = 0;
 
+    $result = $db->query("
+    SELECT 
+      title, progress
+    FROM 
+      wishlist 
+    WHERE
+      id = $wishlist_id
+    LIMIT
+      1        
+    "); 
+    
+    $row = $result->fetch_assoc();
+    $update_progress = $row['progress']+$progress;
+    $transaction_title = "Savings for ".$row['title'];
+
+    $result = $db->query("
+    UPDATE wishlist SET
+      progress = $progress 
+    WHERE
+      id = $wishlist_id;
+    ");
+
+    $result = $db->query("
+    UPDATE wishlist SET
+      progress = $progress 
+    WHERE
+      id = $wishlist_id;
+    ");
+
+    $result = $db->query("
+      INSERT INTO transactions
+        (title, amount, account,ref_id)
+      VALUES
+        ($transaction_title,$update_progress,3,$wishlist_id)
+    ");
   }
 
+  public static function reduceProgress($wishlist_id, $progress) 
+  {
+    $db = DB::getInstance();
+    $update_progress = 0;
+
+    $result = $db->query("
+    SELECT 
+      title, progress
+    FROM 
+      wishlist 
+    WHERE
+      id = $wishlist_id
+    LIMIT
+      1        
+    "); 
+    
+    $row = $result->fetch_assoc();
+    $update_progress = $row['progress']+$progress;
+    $transaction_title = "Taken from ".$row['title'];
+
+    $result = $db->query("
+    UPDATE wishlist SET
+      progress = $progress 
+    WHERE
+      id = $wishlist_id;
+    ");
+
+    $result = $db->query("
+    UPDATE wishlist SET
+      progress = $progress 
+    WHERE
+      id = $wishlist_id;
+    ");
+
+    $result = $db->query("
+      INSERT INTO transactions
+        (title, amount, account,ref_id)
+      VALUES
+        (".$transaction_title.",$update_progress,3,$wishlist_id)
+    ");
+  }
   public static function changeStatus () {
 
   }
