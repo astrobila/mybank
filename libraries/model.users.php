@@ -21,9 +21,29 @@ class UserModel {
 
   }
 
-  public static function edit($user_id) 
+  public static function edit($user_id, $data) 
   {
+    $db = DB::getInstance();
 
+    $id = $db->real_escape_string($user_id);
+    $username = $db->real_escape_string($data['username']);
+    $email = $db->real_escape_string($data['email']);
+    $password = $db->real_escape_string($data['password']);
+    $password = md5($password);
+
+
+    $result = $db->query("
+      UPDATE users SET
+        username = '$username', 
+        email = '$email', 
+        password = '$password' 
+      WHERE
+        id = $id
+    ");
+
+    return [
+      'result' => $result,
+    ];
   }
 
   public static function addUser($data) {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb
--- Generation Time: Jun 09, 2023 at 06:16 PM
+-- Generation Time: Jun 10, 2023 at 05:49 PM
 -- Server version: 10.10.3-MariaDB-1:10.10.3+maria~ubu2204
 -- PHP Version: 8.1.15
 
@@ -81,8 +81,16 @@ CREATE TABLE `wishlists` (
   `description` varchar(512) NOT NULL,
   `status` int(11) NOT NULL COMMENT '1- ongoing\r\n2- done\r\n3- cancelled',
   `progress` double NOT NULL DEFAULT 0,
-  `date_time_created` datetime NOT NULL DEFAULT current_timestamp()
+  `date_time_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `img` blob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `wishlists`
+--
+
+INSERT INTO `wishlists` (`id`, `user_id`, `item_name`, `item_price`, `description`, `status`, `progress`, `date_time_created`, `img`) VALUES
+(1, 1, 'Boneka Orca', 236000, 'pengen beli boneka orca lucu', 1, 0, '2023-06-10 08:57:17', NULL);
 
 --
 -- Indexes for dumped tables

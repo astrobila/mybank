@@ -83,7 +83,6 @@ function form_submit() {
       $errMessage['password'] = 'Password salah';
     } else {
       UserSession::set_session($user);
-      UserModel::login($username);
       return [
         'status' => 2,
         'message' => 'Login berhasil',

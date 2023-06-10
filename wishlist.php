@@ -32,8 +32,8 @@ $data = WishlistModel::getAll(UserSession::get_id(), $page, 10);
         <?php foreach ($data['data'] as $idx => $row) { ?>        
         <tr>
           <th scope="row"><?=$idx + $data['start_offset'] + 1?></th>
-          <td><?=htmlentities($row['title'])?></td>
-          <td><?=htmlentities(date('F j, Y H:i', strtotime($row['mdate'])))?></td>
+          <td><?=htmlentities($row['item_name'])?></td>
+          <td><?=htmlentities(date('F j, Y H:i', strtotime($row['date_time_created'])))?></td>
           <td>
             <a class="btn btn-warning btn-sm" href="notes.edit.php?id=<?=$row['id']?>">
               <span data-feather="edit" class="align-text-bottom"></span> 
