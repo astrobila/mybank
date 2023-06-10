@@ -7,7 +7,7 @@ class WishlistModel {
     $db = DB::getInstance();
 
     $user_id = filter_var($user_id, FILTER_VALIDATE_INT) ? $user_id : 0;
-    $count = $db->query('SELECT COUNT(*) FROM wishlist')->fetch_assoc()['COUNT(*)'];
+    $count = $db->query('SELECT COUNT(*) FROM wishlists')->fetch_assoc()['COUNT(*)'];
     
     $max_page = ceil($count / $max_rows);
     $max_page = $max_page < 1 ? 1 : $max_page;
@@ -19,7 +19,7 @@ class WishlistModel {
     SELECT 
       *
     FROM 
-      wishlist 
+      wishlists 
     WHERE
       user_id = $user_id        
     ORDER BY
@@ -63,7 +63,7 @@ class WishlistModel {
     SELECT 
       title, progress
     FROM 
-      wishlist 
+      wishlists 
     WHERE
       id = $wishlist_id
     LIMIT
@@ -75,14 +75,14 @@ class WishlistModel {
     $transaction_title = "Savings for ".$row['title'];
 
     $result = $db->query("
-    UPDATE wishlist SET
+    UPDATE wishlists SET
       progress = $progress 
     WHERE
       id = $wishlist_id;
     ");
 
     $result = $db->query("
-    UPDATE wishlist SET
+    UPDATE wishlists SET
       progress = $progress 
     WHERE
       id = $wishlist_id;
@@ -105,7 +105,7 @@ class WishlistModel {
     SELECT 
       title, progress
     FROM 
-      wishlist 
+      wishlists 
     WHERE
       id = $wishlist_id
     LIMIT
@@ -113,18 +113,18 @@ class WishlistModel {
     "); 
     
     $row = $result->fetch_assoc();
-    $update_progress = $row['progress']+$progress;
+    $update_progress = $row['progress']-$progress;
     $transaction_title = "Taken from ".$row['title'];
 
     $result = $db->query("
-    UPDATE wishlist SET
-      progress = $progress 
+    UPDATE wishlists SET
+      progress = $update_progress 
     WHERE
       id = $wishlist_id;
     ");
 
     $result = $db->query("
-    UPDATE wishlist SET
+    UPDATE wishlists SET
       progress = $progress 
     WHERE
       id = $wishlist_id;
@@ -134,13 +134,29 @@ class WishlistModel {
       INSERT INTO transactions
         (title, amount, account,ref_id)
       VALUES
-        (".$transaction_title.",$update_progress,3,$wishlist_id)
+        (".$transaction_title.",$update_progress,1,$wishlist_id)
     ");
   }
-  public static function changeStatus () {
 
+  public static function cancel ($wishlist_id) {
+    $db = DB::getInstance();
+    $result = $db->query("
+    UPDATE wishlists SET
+      status = 3
+    WHERE
+      id = $wishlist_id;
+    ");
   }
 
+  public static function done ($wishlist_id) {
+    $db = DB::getInstance();
+    $result = $db->query("
+    UPDATE wishlists SET
+      status = 2 
+    WHERE
+      id = $wishlist_id;
+    ");
+  }
   public static function add () {
 
   }
