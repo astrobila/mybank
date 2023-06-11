@@ -142,6 +142,14 @@ class WishlistModel {
     $db = DB::getInstance();
 
     $result = $db->query("
+    INSERT INTO transactions
+      (user_id, title, description, account, amount, receipt)
+    VALUES
+      ()
+    ");
+
+
+    $result = $db->query("
     UPDATE wishlists SET
       status = 3
       progress = 0
@@ -183,7 +191,10 @@ class WishlistModel {
     $db = DB::getInstance();
 
     $result = $db->query("
-
+    UPDATE
+      wishlists
+    SET
+    WHERE
     ");
 
     return [
@@ -196,6 +207,8 @@ class WishlistModel {
 
     $id = $db->real_escape_string($id);
     
+    self::cancel($id);
+
     $result = $db->query("
       DELETE FROM 
         wishlists 

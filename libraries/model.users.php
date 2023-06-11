@@ -54,7 +54,6 @@ class UserModel {
     $password = $db->real_escape_string($data['password']);
     $password = md5($password);
 
-
     $result = $db->query("
       INSERT INTO users
         (username, email, password)
