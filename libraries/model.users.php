@@ -20,7 +20,7 @@ class UserModel {
     return $result->fetch_assoc();
 
   }
-
+  
   public static function edit($user_id, $data) 
   {
     $db = DB::getInstance();
