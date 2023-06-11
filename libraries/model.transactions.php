@@ -48,6 +48,38 @@ class TransactionsModel {
   ];
   }
 
+  public static function getAllForMobile($user_id) 
+  {
+    $db = DB::getInstance();
+
+    $user_id = filter_var($user_id, FILTER_VALIDATE_INT) ? $user_id : 0;
+    $count = $db->query('SELECT COUNT(*) FROM transactions')->fetch_assoc()['COUNT(*)'];
+
+    $result = $db->query("
+    SELECT 
+      *
+    FROM 
+      transactions 
+    WHERE
+      user_id = $user_id        
+    ORDER BY
+      date_time_created DESC
+  ");
+
+  $rows = [];
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      $rows[] = $row;
+    }
+  }
+
+  return [
+    'count' => $count,
+    'data' => $rows,
+  ];
+  }
+
   public static function getTransactionByAccount($user_id, $page = 0, $max_rows = 10, $account)
   {
     $db = DB::getInstance();
@@ -188,7 +220,7 @@ class TransactionsModel {
     $db = DB::getInstance();
 
     $id = $db->real_escape_string($id);
-        
+
     $result = $db->query("
     UPDATE transactions SET
       title = ,

@@ -35,7 +35,7 @@ class WishlistModel {
       $rows[] = $row;
     }
   }
-
+  
   return [
     'all_count' => $count,
     'max_page' => $max_page,
@@ -47,6 +47,39 @@ class WishlistModel {
 
     'data' => $rows,
   ];    
+  }
+  
+  public static function getAllForMobile($user_id) 
+  {
+    $db = DB::getInstance();
+
+    $user_id = filter_var($user_id, FILTER_VALIDATE_INT) ? $user_id : 0;
+    $count = $db->query('SELECT COUNT(*) FROM wishlists')->fetch_assoc()['COUNT(*)'];
+
+
+   $result = $db->query("
+      SELECT 
+        *
+      FROM 
+        wishlists 
+      WHERE
+        user_id = $user_id        
+      ORDER BY
+        date_time_created DESC
+    ");
+
+    $rows = [];
+
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+      }
+    }
+    
+    return [
+      'count' => $count,
+      'data' => $rows,
+    ];    
   }
 
   public static function getWishlistByStatus($user_id, $status) 
