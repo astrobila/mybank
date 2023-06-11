@@ -140,9 +140,11 @@ class WishlistModel {
 
   public static function cancel ($wishlist_id) {
     $db = DB::getInstance();
+
     $result = $db->query("
     UPDATE wishlists SET
       status = 3
+      progress = 0
     WHERE
       id = $wishlist_id;
     ");
@@ -150,22 +152,60 @@ class WishlistModel {
 
   public static function done ($wishlist_id) {
     $db = DB::getInstance();
+
     $result = $db->query("
     UPDATE wishlists SET
       status = 2 
     WHERE
       id = $wishlist_id;
     ");
+
+    return [
+      'result' => $result,
+    ];    
   }
-  public static function add () {
+  public static function add ($data) {
+    $db = DB::getInstance();
 
+    $result = $db->query("
+    INSERT INTO transactions
+    (user_id, title, description, account, amount, receipt)
+    VALUES
+    ()
+    ");
+
+    return [
+      'result' => $result,
+    ];   
   }
 
-  public static function edit () {
+  public static function edit ($id, $data) {
+    $db = DB::getInstance();
 
+    $result = $db->query("
+
+    ");
+
+    return [
+      'result' => $result,
+    ];   
   }
 
-  public static function delete () {
+  public static function delete ($id) {
+    $db = DB::getInstance();
+
+    $id = $db->real_escape_string($id);
+    
+    $result = $db->query("
+      DELETE FROM 
+        wishlists 
+      WHERE 
+        id = $id
+    ");
+
+    return [
+      'result' => $result,
+    ];
     
   }
 

@@ -169,15 +169,56 @@ class TransactionsModel {
 
   }
 
-  public static function add () {
+  public static function add ($data) {
+    $db = DB::getInstance();
 
+    $result = $db->query("
+    INSERT INTO transactions
+    (user_id, title, description, account, amount, receipt)
+    VALUES
+    ()
+    ");
+
+    return [
+      'result' => $result,
+    ];
   }
   
-  public static function edit () {
+  public static function edit ($id, $data) {
+    $db = DB::getInstance();
 
-  }
-  
-  public static function delete () {
+    $id = $db->real_escape_string($id);
+        
+    $result = $db->query("
+    UPDATE transactions SET
+      title = ,
+      description = ,
+      account = ,
+      amount = ,
+      receipt = 
+    WHERE
+      id = $id
+    ");
+
     
+    return [
+      'result' => $result,
+    ];
+  }
+  
+  public static function delete ($id) {
+    $db = DB::getInstance();
+    
+    $id = $db->real_escape_string($id);
+
+    $result = $db->query("
+    DELETE FROM 
+      transactions 
+    WHERE 
+      id = $id
+    ");
+    return [
+      'result' => $result,
+    ];
   }
 }
