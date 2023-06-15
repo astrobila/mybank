@@ -132,6 +132,11 @@ include './layouts/inc.content.begin.php';
     <?php } ?>
   </div>
 
+  <div class="text-center p-t-12">
+    <span class="txt1">Belum memiliki akun?</span>
+    <a class="txt2" href="register.php"> Daftar di sini. </a>
+  </div>
+  
   <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
   <p class="mt-3 mb-3 text-muted">&copy; 2023</p>
 </form>
