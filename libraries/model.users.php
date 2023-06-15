@@ -20,6 +20,26 @@ class UserModel {
     return $result->fetch_assoc();
 
   }
+
+  public static function getUserByEmail($email)
+  {
+    $db = DB::getInstance();
+    $result = $db->query("
+      SELECT 
+        * 
+      FROM 
+        users 
+      WHERE 
+        email = '" . $email . "' LIMIT 1
+    ");
+
+    if ($result->num_rows == 0) {
+      return null;
+    }
+    
+    return $result->fetch_assoc();
+
+  }
   
   public static function edit($user_id, $data) 
   {
