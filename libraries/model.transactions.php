@@ -20,7 +20,7 @@ class TransactionsModel {
     FROM 
       transactions 
     WHERE
-      user_id = $user_id        
+      user_id = $user_id AND (account = 1 OR account = 2)        
     ORDER BY
       date_time_created DESC
     LIMIT 
@@ -61,7 +61,7 @@ class TransactionsModel {
     FROM 
       transactions 
     WHERE
-      user_id = $user_id        
+      user_id = $user_id AND (account = 1 OR account = 2)     
     ORDER BY
       date_time_created DESC
   ");
@@ -110,7 +110,7 @@ class TransactionsModel {
     FROM 
       transactions 
     WHERE
-      user_id = $user_id AND account = $account_int       
+      user_id = $user_id AND account = $account_int    
     ORDER BY
       date_time_created DESC
     LIMIT 
