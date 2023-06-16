@@ -110,7 +110,7 @@ include './layouts/inc.content.begin.php';
 ?>
 <main class="form-signin w-100 m-auto">
 
-<form action="signin.php" method="post" class="text-center">
+<form action="login.php" method="post" class="text-center">
   <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
   <div class="form-floating">
