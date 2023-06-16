@@ -7,10 +7,6 @@ include 'layouts/inc.header.tag.php';
 include 'layouts/inc.navbar.php';
 include 'layouts/inc.content.begin.php';
 
-// $id = UserSession::get_id();
-// $data = TransactionsModel::getBalance(UserSession::get_id());
-
-
 Helpers::noLoginRedirect('login.php');
 
 ?>
