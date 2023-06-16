@@ -84,7 +84,26 @@ class WishlistModel {
 
   public static function getWishlistByStatus($user_id, $status) 
   {
+    
+  }
 
+  public static function getWishlistById($user_id) 
+  {
+    $db = DB::getInstance();
+    $result = $db->query("
+    SELECT 
+      *
+    FROM 
+      wishlists 
+    WHERE
+      user_id = $user_id
+    LIMIT
+      1        
+    "); 
+
+    $row = $result->fetch_assoc();
+
+    return $row;
   }
 
   public static function addProgress($wishlist_id, $progress) 

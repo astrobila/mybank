@@ -9,6 +9,16 @@ include 'layouts/inc.content.begin.php';
 
 Helpers::noLoginRedirect('login.php');
 
+// user data
+$user_id = UserSession::get_id();
+
+// wishlist data
+$wishlist_data[] = WishlistModel::getWishlistById($user_id, 0);
+$wl_progress = $wishlist_data['progress'];
+$wl_price = $wishlist_data['item_price'];
+$wl_name = $wishlist_data['item_name'];
+$wl_status = $wishlist_data['status'];
+
 ?>
 
 <head>
@@ -21,24 +31,28 @@ Helpers::noLoginRedirect('login.php');
                 <h2>Welcome, <?=htmlentities(UserSession::get_id())?></h2>
             </div>
 
-            <div class="balance-box", style="top: 115px;">
+            <div class="balance-box", style="top: 20px; height: 120px;">
                 <div class="balance-text">
                     <h4>Your Balance</h4>
                     <h3>RP. <?=htmlentities(TransactionsModel::getBalance(UserSession::get_id()))?></h3>
                 </div>
             </div>
             <p></p>
-            <div class="balance-box" style="top: 240px">
+            <div class="balance-box" style="top: 15px; height: 280px;">
                 <div class="wishlist-text">
                     <h4>Top Wishlist</h4>
-                    <h3>RP. <?=htmlentities(TransactionsModel::getBalance(UserSession::get_id()))?></h3>
+                    <h2>1. <?=$wl_name?></h2>
+                    <h5>RP. <?=htmlentities(TransactionsModel::getBalance(UserSession::get_id()))?></h5>
+                    <a href='wishlist.php'><button>See more</button></a>
                 </div>
-            </div>
+            </div> 
+            <!-- htmlentities(WishlistModel::getWishlistById(1, 0)) -->
             
         </div>
         <div class="column" style="background-color:#e5e5e5e5;">
             <h2>Column 2</h2>
             <p>Some text..</p>
+            
         </div>
     </div>
 </body>
