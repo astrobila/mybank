@@ -241,7 +241,7 @@ class TransactionsModel {
     }
 
     #Balance = credit - debit - savings
-    $balance = $sumCredit - $sumDebit - $sumSavings;
+    $balance = $sumCredit - ($sumDebit + $sumSavings);
 
     return $balance;
 
