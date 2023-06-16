@@ -7,7 +7,7 @@ include 'layouts/inc.header.tag.php';
 include 'layouts/inc.navbar.php';
 include 'layouts/inc.content.begin.php';
 
-Helpers::noLoginRedirect('signin.php');
+Helpers::noLoginRedirect('login.php');
 
 ?>
 

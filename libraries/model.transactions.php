@@ -138,6 +138,52 @@ class TransactionsModel {
   ];
   }
 
+  public static function getSavings($wishlist_id, $page = 0, $max_rows = 5) {
+        $db = DB::getInstance();
+
+    $user_id = filter_var($wishlist_id, FILTER_VALIDATE_INT) ? $wishlist_id : 0;
+    $count = $db->query('SELECT COUNT(*) FROM transactions')->fetch_assoc()['COUNT(*)'];
+    
+    $max_page = ceil($count / $max_rows);
+    $max_page = $max_page < 1 ? 1 : $max_page;
+    $page = $page < 1 ? 1 : $page;
+    $page = $page > $max_page ? $max_page : $page;
+    $start_offset = ($page - 1) * $max_rows;
+
+    $result = $db->query("
+    SELECT 
+      *
+    FROM 
+      transactions 
+    WHERE
+      ref_id = $wishlist_id AND account = 3        
+    ORDER BY
+      date_time_created DESC
+    LIMIT 
+      $start_offset, $max_rows
+  ");
+
+  $rows = [];
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      $rows[] = $row;
+    }
+  }
+
+  return [
+    'all_count' => $count,
+    'max_page' => $max_page,
+
+    'count' => $result->num_rows,
+    'page' => $page,
+    
+    'start_offset' => $start_offset,
+
+    'data' => $rows,
+  ];
+  }
+
   public static function getBalance($user_id)
   {
     $balance = 0;
@@ -204,11 +250,17 @@ class TransactionsModel {
   public static function add ($data) {
     $db = DB::getInstance();
 
+    $user_id = $db->real_escape_string($data['user_id']);
+    $title = $db->real_escape_string($data['title']);
+    $description = $db->real_escape_string($data['description']);
+    $account = $db->real_escape_string($data['account']);
+    $amount = $db->real_escape_string($data['amount']);
+
     $result = $db->query("
     INSERT INTO transactions
-    (user_id, title, description, account, amount, receipt)
+    (user_id, title, description, account, amount)
     VALUES
-    ()
+    ($user_id, $title, $description, $account, $amount)
     ");
 
     return [
@@ -220,14 +272,17 @@ class TransactionsModel {
     $db = DB::getInstance();
 
     $id = $db->real_escape_string($id);
+    $title = $db->real_escape_string($data['title']);
+    $description = $db->real_escape_string($data['description']);
+    $account = $db->real_escape_string($data['account']);
+    $amount = $db->real_escape_string($data['amount']);
 
     $result = $db->query("
     UPDATE transactions SET
-      title = ,
-      description = ,
-      account = ,
-      amount = ,
-      receipt = 
+      title = $title,
+      description = $description,
+      account = $account,
+      amount = $amount,
     WHERE
       id = $id
     ");
