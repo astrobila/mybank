@@ -55,25 +55,10 @@ $data = TransactionsModel::getAll($user_id, $page, 10);
             <!-- htmlentities(WishlistModel::getWishlistById(1, 0)) -->
             
         </div>
-        <div class="column">
-            <div class="recent-transaction-box">
-                <div class="box-text">
-                    <h4>Recent Transactions</h4>
-                </div>
-                <div class="transaction-col">
-                    <h2>Tes</h2>
-                    <tbody>
-                        <?php foreach ($data['data'] as $idx => $row) { ?>        
-                        <tr>
-                        <td><p><?=htmlentities($row['title'])?></p> <p><?=htmlentities($row['amount'])?></p>
-                        </td>
-                        <td><?=htmlentities(date('F j, Y H:i', strtotime($row['date_time_modified'])))?></td>
-                        <td></td>
-                        </tr>
-                        <?php } ?>        
-                    </tbody>
-                </div>
-            </div>
+        <div class="column" style="background-color:#e5e5e5e5;">
+            <h2>Column 2</h2>
+            <p>Some text..</p>
+            
         </div>
     </div>
 </body>
