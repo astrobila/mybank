@@ -50,9 +50,10 @@ $wl_status = $wishlist_data['status'];
             
         </div>
         <div class="column" style="background-color:#e5e5e5e5;">
-            <h2>Column 2</h2>
+          <div class="balance-box", style="top: 20px; height: 120px;">
+            <h4>Column 2</h4>
             <p>Some text..</p>
-            
+</div>
         </div>
     </div>
 </body>
