@@ -16,7 +16,7 @@
       <a class="nav-link" href="wishlist.php">Wishlist</a>
     </li>
     <li class="nav-item me-2 text-nowrap">
-      <a class="nav-link" href="profile_design.php">Profile</a>
+      <a class="nav-link" href="profile.php">Profile</a>
     </li>
     <li class="nav-item me-2 text-nowrap">
       <a class="nav-link" href="logout.php">Logout</a>
