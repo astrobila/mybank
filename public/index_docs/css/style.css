@@ -60,7 +60,7 @@ h5{
 }
 
 /*** Navbar ***/
- .navbar-nav .nav-link {
+/* .navbar-nav .nav-link {
     font-family: 'Nunito', sans-serif;
     position: relative;
     margin-right: 25px;

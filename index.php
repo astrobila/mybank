@@ -34,7 +34,7 @@ $data = TransactionsModel::getAll($user_id, $page, 10);
     <!-- <div class="row"> -->
         <div class="column">
             <div class="index-header">
-                <h2>Welcome, <?=htmlentities(UserSession::get_id())?></h2>
+                <h2>Welcome, <?=htmlentities(UserModel::getUserById(UserSession::get_id())['username'])?></h2>
             </div>
 
             <div class="balance-box", style="top: 20px; height: 120px;">
