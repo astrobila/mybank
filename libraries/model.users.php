@@ -21,6 +21,26 @@ class UserModel {
 
   }
 
+  public static function getUserById($id)
+  {
+    $db = DB::getInstance();
+    $result = $db->query("
+      SELECT 
+        * 
+      FROM 
+        users 
+      WHERE 
+        id = '" . $db->real_escape_string($id) . "' LIMIT 1
+    ");
+
+    if ($result->num_rows == 0) {
+      return null;
+    }
+    
+    return $result->fetch_assoc();
+
+  }
+  
   public static function getUserByEmail($email)
   {
     $db = DB::getInstance();

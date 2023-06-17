@@ -3,11 +3,11 @@
 <title><?=$pageTitle?></title>
 
 <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<!--link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
-    <link href="./public/index_docs/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="./public/index_docs/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet"-->
+    <!--link href="./public/index_docs/lib/animate/animate.min.css" rel="stylesheet"-->
+    <!--link href="./public/index_docs/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"-->
     <!--link href="./public/index_docs/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" /!-->
 <style>
 <?php
@@ -22,7 +22,7 @@ body {
   width: 16px;
   height: 16px;
 }
-
+/*
 :root {
     --primary: #000000;
     --secondary: #FE8800;
@@ -94,6 +94,7 @@ p{
 }
 
 /*** Button ***/
+/*
 .btn {
     font-family: 'Nunito', sans-serif;
     border-radius: 19px;
@@ -128,7 +129,7 @@ h5{
     font-size: 25px;
     color: #000000;
 }
-
+*/
 @media (max-width: 767.98px) {
   .navbar-nav {
     display: none;
@@ -173,7 +174,7 @@ h5{
 .navbar .form-control {
   padding: .75rem 1rem;
 }
-
+/*
 .service-item {
     box-shadow: 0 0 45px rgba(0, 0, 0, .08);
     transition: .5s;
@@ -253,7 +254,7 @@ h5{
     border-right: none;
 }
 
-
+*/
 <?php 
   } else { 
     echo $mainCSSStyle;

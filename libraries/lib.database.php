@@ -8,8 +8,8 @@ class DB {
   private function __construct() {
     global $DBConfig;
     
-    //self::$dbconn = new mysqli($DBConfig['servername'], $DBConfig['username'], $DBConfig['password'], $DBConfig['dbname']);
-    self::$dbconn = new mysqli('localhost', $DBConfig['username'], "", $DBConfig['dbname']);    
+    self::$dbconn = new mysqli($DBConfig['servername'], $DBConfig['username'], $DBConfig['password'], $DBConfig['dbname']);
+    //self::$dbconn = new mysqli('localhost', $DBConfig['username'], "", $DBConfig['dbname']);    
   }
 
   public static function getInstance() {
