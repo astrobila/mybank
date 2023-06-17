@@ -59,28 +59,36 @@ include './layouts/inc.navbar.php';
   </head>
   <body>
       <?php
-      $nama = "Tartaglia";
-      $email = "tatang69@example.com";
+
+      $user_id = UserSession::get_id();
       $foto = "assets/images/illyan.png"; 
+
+    //   user data
+    $data = UserModel::getUserById($user_id);
+    $nama = $data['username'];
+    $email = $data['email'];
+
+    // edit user data
+    UserModel::edit($user_id, $data)
 
       // Tampilan profil
       ?>
       <div class="container" style="background-color:white;">
-          <h1>Profil Pengguna - Edit</h1>
+          <h1><?=htmlentities(UserModel::getUserById(UserSession::get_id())['username'])?></h1>
           <img class="profile-img" src="<?php echo $foto; ?>" alt="Foto Profil">
           <div class="profile-info">
-              <p><label>Nama:</label> <?php echo $nama; ?></p>
-              <p><label>Email:</label> <?php echo $email; ?></p>
+              <p><label>Nama:</label> <?=$nama; ?></p>
+              <p><label>Email:</label> <?=$email; ?></p>
           </div>
           <div class="edit-form">
               <h2>Edit Informasi</h2>
 
               <form action="process_edit.php" method="POST">
                   <label for="nama">Nama:</label>
-                  <input type="text" name="nama" id="nama" placeholder="Nama" value="<?php echo $nama; ?>">
+                  <input type="text" name="new_uname" id="nama" placeholder="Nama" value="<?= $nama; ?>">
 
                   <label for="email">Email:</label>
-                  <input type="email" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>">
+                  <input type="email" name="new_email" id="email" placeholder="Email" value="<?= $email; ?>">
 
                   <label for="Password">Password:</label>
                   <input type="text" name="old-password" placeholder="old password" >
